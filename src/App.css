@@ -1,0 +1,150 @@
+@import url("https://use.typekit.net/lph0fzj.css");
+@import "tailwindcss";
+
+
+@theme {
+  --color-main-red: #AE1717;
+  --color-accent-red: #DE2222;
+  --color-offwhite: #FFCDCD;
+  --color-mainbg: #262629;
+  --color-portfoliobg: #55595E;
+  --color-aboutbg: #91B8C0;
+
+  --font-body: "quire-sans", sans-serif;
+  --font-epic: IvyEpic, sans-serif;
+  --font-bodoni: IvyBodoni, serif;
+  --font-scribbling: 'indie-flower', cursive;
+
+  --animate-leftslide: slide-left 3s linear infinite;
+  --animate-rightslide: slide-right 3s linear infinite;
+  --animate-pulseloader: pulsating 2s cubic-bezier(0.4, 0, 0.4, 0) infinite;
+  --animate-mask-reveal: mask-reveal 1.5s ease-in-out;
+
+
+  @keyframes slide-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  @keyframes slide-right {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes pulsating {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes mask-reveal {
+    0% {
+      --mask-angle: 0deg;
+      --transparency: 0%;
+      --coloured: 0%;
+    }
+    100% {
+      --mask-angle: 180deg;
+      --transparency: 100%;
+      --coloured: 0%;
+    }
+  }
+
+}
+
+.bg-loading {
+  background-image: url('./assets/loadingbg.png');
+}
+
+.bg-hero{
+  background-image: url('./assets/sankthans_kroyer.jpg');
+  background-size: cover;
+  background-position: center;  
+}
+
+.bg-about{
+  background-image: url('./assets/kevin-grieve-jukebox.jpg');
+  background-size: cover;
+  background-position: center;  
+}
+
+
+.etop {
+  background-color: var(--color-accent-red);
+  transform-origin: left;
+  transform: rotate(-45deg);
+  width: 80vh;
+  height: 50px;
+  top: 60vh;
+  left: 20vw;
+}
+
+.ebot {
+  background-color: var(--color-accent-red);
+  transform-origin: left;
+  transform: rotate(45deg);
+  width: 80vh;
+  height: 50px;
+  top: 55vh;
+  left: 30vw;
+}
+
+.emid {
+  background-color: var(--color-accent-red);
+  width: 17vw;
+  height: 50px;
+  top: 46vh;
+  left: 44vw;
+}
+
+@layer utilities {
+  .hover-bg-offset {
+    position: relative;
+  }
+  .hover-bg-offset::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--accent-red);
+    transform: translate(4px, -2px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .hover-bg-offset:hover::before {
+    opacity: 1;
+  }
+}
+
+
+@property --mask-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@property --transparency {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --coloured {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@layer utilities {
+  .animate-mask-reveal {
+    animation: mask-reveal 1.5s ease-in-out forwards;
+    -webkit-mask-image: conic-gradient(
+      from var(--mask-angle),
+      transparent var(--transparency),
+      black var(--coloured)
+    );
+    mask-image: conic-gradient(
+      from var(--mask-angle),
+      transparent var(--transparency),
+      black var(--coloured)
+    );
+  }
+}
