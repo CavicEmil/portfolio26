@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import previewdummy from '../assets/previewdummy.png';
 import ProjektDetail from '../components/ProjektDetail';
 
 
 export default function Projekter() {
+
     const projects = [
         { id: 'kunsthalmuseum', title: 'Kunsthal Museum', tags: ['Branding', 'Webdesign', 'Development'] , preview: previewdummy },
         { id: 'blaasol', title: 'Blå Sol Festival', tags: ['Forskning', 'UX/UI Design', 'Development'], preview: previewdummy },
@@ -17,6 +19,7 @@ export default function Projekter() {
     const tagsRefs = useRef({});
     const previewRefs = useRef({});
     const scrollAreaRef = useRef(null);
+
 
     const handleEnter = (id) => {
         gsap.set(tagsRefs.current[id], { yPercent: -100, autoAlpha: 0 });
@@ -38,6 +41,7 @@ export default function Projekter() {
         });
     };
 
+
     useEffect(() => {
         if (!selectedId) return;
 
@@ -54,22 +58,23 @@ export default function Projekter() {
             window.removeEventListener('wheel', handleWheel);
         };
     }, [selectedId]);
-
+/* absolute top-[80vh] */
     return (
-        <div className="bg-mainbg py-[30vh] min-h-[100vh] w-full overflow-hidden z-20">
-            <div className='flex flex-col items-start pl-36 '>
+        <div className="bg-mainbg py-[30vh] min-h-[120vh] w-full overflow-hidden z-70 "> 
+            <div className='flex flex-col items-start pl-36 relative'>
                 <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-[10vh]'>udvalgte projekter</h2>
-                <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-18  font-epic text-[48px] text-white uppercase '>
+                <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-18  font-epic text-[48px] text-white  '>
                     {projects.map((project) => (
                         <div
                             key={project.id}
-                            className="relative w-full h-[10vh] cursor-pointer py-6"
+                            className="relative w-full h-[13vh] cursor-pointer py-6"
                             onMouseEnter={() => handleEnter(project.id)}
                             onMouseLeave={() => handleLeave(project.id)}
                         >
                             <button
+                                data-cursor="se mere"
                                 onClick={() => setSelectedId(project.id)}
-                                className="relative block text-left overflow-hidden h-[50px]"
+                                className="relative block text-left overflow-hidden h-[52px]"
                                 
                             >
                                 <span
@@ -80,14 +85,14 @@ export default function Projekter() {
                                 </span>
                                 <span
                                     ref={(el) => (hoverTitleRefs.current[project.id] = el)}
-                                    className="block font-bodoni text-[48px] text-white uppercase leading-none absolute top-full left-0"
+                                    className="block font-bodoni text-[48px] text-white uppercase pt-[2px] absolute top-full left-0"
                                 >
                                     {project.title}
                                 </span>
                             </button>
                             <div
                                 ref={(el) => (tagsRefs.current[project.id] = el)}
-                                className="font-body text-[28px] text-white"
+                                className="font-body text-[28px] text-white "
                                 >
                                 {project.tags.join(' | ')}
                             </div>

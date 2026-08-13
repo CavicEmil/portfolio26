@@ -3,11 +3,13 @@ import { createRoot } from 'react-dom/client'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import './index.css'
 import App from './App.jsx'
-import { MotionPathPlugin } from 'gsap/all';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, MotionPathPlugin);
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, MotionPathPlugin, ScrambleTextPlugin);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

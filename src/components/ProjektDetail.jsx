@@ -2,7 +2,12 @@ import { useRef, useEffect, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
+
 export default function ProjektDetail() {
+
+    const panelRef = useRef(null);
+     const tlRef = useRef(null);
+
     useLayoutEffect(() => {
     const ctx = gsap.context(() => {
         tlRef.current = gsap.timeline().fromTo(
@@ -40,7 +45,7 @@ export default function ProjektDetail() {
     }, []);
   
     return (
-        <div ref={panelRef} className=" fixed top-0 right-0 h-screen w-[93vw] bg-mainbg z-70
+        <div ref={panelRef} className=" fixed top-0 right-0 h-screen w-[60vw] bg-mainbg z-70
             bg-portfoliobg w-[200vw] h-[90vh] font-white font-bodoni">
             Here be project details
         </div>

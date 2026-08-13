@@ -4,7 +4,7 @@ export default function LoadingScreen({ onLoaded }) {
   const [text, setText] = useState("");
   const [isExiting, setIsExiting] = useState(false);
 
-  const words = ["Velkomme", "til", "portfolio", "af", "Emil", "Cavic"];
+  const words = ["Velkomme", "til", "portfolio", "af", "Emil", "Cavic","Velkomme", "til"];
   const loadingText = "Indlæser";
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function LoadingScreen({ onLoaded }) {
         clearInterval(interval);
         setTimeout(() => {
             setIsExiting(true);
-            setTimeout(onLoaded, 3000);
+            setTimeout(onLoaded, 1000);
         },500);
       }
     }, 500);

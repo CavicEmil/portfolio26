@@ -14,6 +14,7 @@
   --font-epic: IvyEpic, sans-serif;
   --font-bodoni: IvyBodoni, serif;
   --font-scribbling: 'indie-flower', cursive;
+  --font-lobster: "lobster", sans-serif;
 
   --animate-leftslide: slide-left 3s linear infinite;
   --animate-rightslide: slide-right 3s linear infinite;
@@ -52,6 +53,10 @@
 
 }
 
+/* * {
+  cursor: none;
+} */
+
 .bg-loading {
   background-image: url('./assets/loadingbg.png');
 }
@@ -62,12 +67,27 @@
   background-position: center;  
 }
 
-.bg-about{
-  background-image: url('./assets/kevin-grieve-jukebox.jpg');
-  background-size: cover;
-  background-position: center;  
+.bg-aboutme {
+  background: url('./assets/aboutbg.png');
 }
 
+.bg-abouttransition{
+  background: linear-gradient(transparent, #DE2222);
+}
+
+.bg-kontakttrans {
+  background: linear-gradient(#DE2222,  transparent 5% 90%);
+}
+
+.bg-kontakt{
+  background-image: url('./assets/kontaktbg.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-footer{
+  background: linear-gradient(#262629,  black 80%);
+}
 
 .etop {
   background-color: var(--color-accent-red);
@@ -135,7 +155,7 @@
 
 @layer utilities {
   .animate-mask-reveal {
-    animation: mask-reveal 1.5s ease-in-out forwards;
+    animation: mask-reveal 1s ease-in-out forwards;
     -webkit-mask-image: conic-gradient(
       from var(--mask-angle),
       transparent var(--transparency),

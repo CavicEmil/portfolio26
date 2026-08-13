@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import './App.css'
+import CustomCursor from './components/CustomCursor';
 import Header from './components/Header';
 import LoadingScreen from './views/LoadingScreen';
 import Landing from './views/Landing';
@@ -15,6 +16,10 @@ import Footer from './components/Footer';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeSection, setActiveSection] = useState('landing');
+
+  const projekterRef = useRef(null);
+  const ommigRef = useRef(null);
+  const textcontainerRef = useRef(null);
 
   const scrollToSection = (id) => {
     if (id === 'landing') {
@@ -29,6 +34,29 @@ export default function App() {
       });
     }
   };
+
+/*   const transitionToOmMig = () => {
+    gsap.to(projekterRef.current, {
+      opacity: 0,
+      daruation: 2,
+      ease: 'power2.inOut',
+    });
+
+    gsap.set('.thatme-image', { display: 'block'});
+    gsap.to(ommigRef.current, {
+      opacity: 1,
+      delay: 3,
+      duration: 2,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        PiLayout('intro');
+      },
+    });
+  };
+ */
+/*   useEffect(() => {
+    transitionToOmMig();
+  },[]); */
 
   useEffect(() => {
     // runs after Landing's useLayoutEffect has already registered its trigger,
@@ -52,13 +80,24 @@ export default function App() {
     }
   }, [isLoading]);
 
+  
+
   return (
     <>
+      <CustomCursor />
       <Header activeSection={activeSection} onNavigate={scrollToSection}/>
       <Landing />
       {isLoading && <LoadingScreen onLoaded={() => setIsLoading(false)} />}
-      <Projekter />
-      <OmMig />
+        {/* <div ref={projekterRef} className='bg-mainbg fixed inset-0 z-0'
+          style={{ opacity: 1 }}
+        > */}
+          <Projekter />
+      {/*  </div>
+       <div ref={ommigRef} className='bg-aboutme fixed inset-0 z-0'
+      style={{ opacity: 0 }}
+        > */}
+        <OmMig />
+      {/* </div> */}
       <Kontakt />
       <Footer />
    </>
