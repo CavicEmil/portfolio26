@@ -2,7 +2,7 @@ const SHARED_HUMAN_TEXT =
   'Som mennesker sætter de pris på meningsfuld kommunikation, formidlet gennem følelser og historier. Derfor får du, når du ansætter mig, ingen fiksfakseri, der pyntes op med buzzwords og tomme fraser. I stedet får du design med karakter og sjæl, dybt menneskeligt. Lyder det godt? ';
 
 const HUMAN_OPTIONS = [
-  { label: 'Absolut!', action: 'goto', target: 'scrollKontakt' },
+  { label: 'Absolut!', action: 'scrollKontakt' },
   { label: 'Ikke helt', action: 'goto', target: 'waltz' },
 ];
 

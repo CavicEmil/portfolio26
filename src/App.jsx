@@ -33,45 +33,42 @@ export default function App() {
         ease: 'power2.inOut',
       });
     }
+    gsap.to(window, { scrollTo: { y: `#${id}`, autoKill: false }, duration: 1, ease: 'power2.inOut' });
   };
 
-/*   const transitionToOmMig = () => {
-    gsap.to(projekterRef.current, {
-      opacity: 0,
-      daruation: 2,
-      ease: 'power2.inOut',
-    });
-
-    gsap.set('.thatme-image', { display: 'block'});
-    gsap.to(ommigRef.current, {
-      opacity: 1,
-      delay: 3,
-      duration: 2,
-      ease: 'power2.inOut',
-      onComplete: () => {
-        PiLayout('intro');
-      },
-    });
-  };
- */
-/*   useEffect(() => {
-    transitionToOmMig();
-  },[]); */
 
   useEffect(() => {
-    // runs after Landing's useLayoutEffect has already registered its trigger,
-    // since child layout effects fire before the parent's passive effects
-    ScrollTrigger.create({
-      start: 0,
-      end: () => ScrollTrigger.getById('landing-transition').end,
-      onToggle: (self) => self.isActive && setActiveSection('landing'),
+    const landingTrigger = ScrollTrigger.getById('landing-transition');
+    if (!landingTrigger) return;
+
+    const triggers = [
+        ScrollTrigger.create({
+          start: 0,
+          end: () => ScrollTrigger.getById('landing-transition').end,
+          onToggle: (self) => self.isActive && setActiveSection('landing'),
+        }),
+      ];
+
+      ['projekter', 'ommig', 'kontakt'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        triggers.push(
+          ScrollTrigger.create({
+            trigger: el,
+            start: 'top center',
+            end: 'bottom center',
+            onToggle: (self) => self.isActive && setActiveSection(id),
+          })
+        );
     });
 
-    ScrollTrigger.create({
-      start: () => ScrollTrigger.getById('landing-transition').end,
-      end: () => ScrollTrigger.getById('landing-transition').end + window.innerHeight,
-      onToggle: (self) => self.isActive && setActiveSection('projects'),
-    });
+    return () => triggers.forEach((t) => t.kill());
+  }, []);
+
+  useEffect(() => {
+    const handleLoad = () => ScrollTrigger.refresh();
+    window.addEventListener('load', handleLoad);
+    return () => window.removeEventListener('load', handleLoad);
   }, []);
 
   useEffect(() => {
@@ -89,9 +86,9 @@ export default function App() {
       <Landing />
       {isLoading && <LoadingScreen onLoaded={() => setIsLoading(false)} />}
       <Projekter />
-      <OmMig />
+      <OmMig onNavigateKontakt={() => scrollToSection('kontakt')} />
       <Kontakt />
-      <Footer />
+      <Footer onNavigateToppen={() => scrollToSection('landing')} />
    </>
   );
 }

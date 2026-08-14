@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 export default function Header({activeSection, onNavigate }) {
   const links = [
      { id: 'landing', label: 'Hjem', classprop: 'before:pb-1 -pl-1 before:-translate-x-2 before:-translate-y-1' },
-     { id: 'projects', label: 'Projekter', classprop: 'before:-pt-2 before:translate-x-1 before:-translate-y-2' },
-     { id: 'about', label: 'Om mig', classprop:'before:p-1 before:-translate-x-2 before:-translate-y-1' },
-     { id: 'contact', label: 'Kontakt', classprop:'before:-p-2 before:-translate-y-2' },
+     { id: 'projekter', label: 'Projekter', classprop: 'before:-pt-2 before:translate-x-1 before:-translate-y-2' },
+     { id: 'ommig', label: 'Om mig', classprop:'before:p-1 before:-translate-x-2 before:-translate-y-1' },
+     { id: 'kontakt', label: 'Kontakt', classprop:'before:-p-2 before:-translate-y-2' },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);

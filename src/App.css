@@ -91,22 +91,22 @@
 
 .etop {
   background-color: var(--color-accent-red);
-  transform-origin: left;
-  transform: rotate(-45deg);
+  /* transform-origin: left !important;
+  transform: rotate(-45deg) !important; */
   width: 80vh;
   height: 50px;
-  top: 60vh;
-  left: 20vw;
+  top: 30vh;
+  left: 15vw;
 }
 
 .ebot {
   background-color: var(--color-accent-red);
-  transform-origin: left;
-  transform: rotate(45deg);
+  /* transform-origin: left !important;
+  transform: rotate(45deg) !important; */
   width: 80vh;
   height: 50px;
-  top: 55vh;
-  left: 30vw;
+  top: 93vh;
+  left: 25vw;
 }
 
 .emid {

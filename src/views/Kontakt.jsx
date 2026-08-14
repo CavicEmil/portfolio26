@@ -1,6 +1,6 @@
 export default function Kontakt() {
     return(
-        <div className="bg-kontakt min-h-[150vh] w-full">
+        <div className="bg-kontakt relative z-30 min-h-[150vh] w-full" id="kontakt">
             <div className="h-[20vh] w-screen bg-kontakttrans"></div>
             <a data-cursor='mail mig' href='mailto:eaa25emca@students.eaaa.dk' target='_blank' linktype='email'>
                 <p className='text-[20vh] px-24 tracking-[-10%] leading-none font-epic text-accent-red'>

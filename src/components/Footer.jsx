@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import tarantino from '../assets/tarantino.gif'
 
-export default function Footer() {
+export default function Footer({ onNavigateToppen }) {
   const [showImprint, setShowImprint] = useState(false);
 
   const toggleImprint = () => {
@@ -36,7 +36,8 @@ export default function Footer() {
         <p>...tak for din opmærksomhed!</p>
        </div>
       <div className='text-[1.5rem] font-body text-white'>Ikke fundet det, du søger? Så er det bedst du læser det hele igen fra toppen:</div>
-      <div className='bg-transparent hover:bg-accent-red transition-color duration-300 cursor-pointer border-solid border-1 rounded-full border-white 
+      <div  onClick={() => onNavigateToppen()}
+        className='bg-transparent hover:bg-accent-red transition-colors duration-300 cursor-pointer border-solid border-1 rounded-full border-white 
         text-epic text-white text-[2rem] pt-2 pb-4 px-4'>
         Til toppen
       </div>

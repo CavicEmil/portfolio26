@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import previewdummy from '../assets/previewdummy.png';
+import previewdummy from '../assets/dummymedia.svg';
 import ProjektDetail from '../components/ProjektDetail';
 
 
 export default function Projekter() {
+
+    const containerRef = useRef(null);
+    const mainBgRef = useRef(null);
 
     const projects = [
         { id: 'kunsthalmuseum', title: 'Kunsthal Museum', tags: ['Branding', 'Webdesign', 'Development'] , preview: previewdummy },
@@ -37,10 +40,39 @@ export default function Projekter() {
             left: '110vw',
             duration: 0.6,
             ease: 'power2.in',
-            onComplete: () => gsap.set(previewRefs.current[id], { left: '-50vw' }), // reset off-left, so it always enters from the left next time
+            onComplete: () => gsap.set(previewRefs.current[id], { left: '-50vw' }),
         });
     };
 
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'top 67%',   
+                end: 'top top',
+                scrub: 1,
+               // markers: true,
+            },
+            }).fromTo(containerRef.current,
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, ease: 'power2.out', duration: 2 },
+            0
+            );
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            projects.forEach((project) => {
+            gsap.set(tagsRefs.current[project.id], { yPercent: -100, autoAlpha: 0 });
+            });
+        }, scrollAreaRef);
+
+        return () => ctx.revert();
+    }, []);
 
     useEffect(() => {
         if (!selectedId) return;
@@ -60,7 +92,7 @@ export default function Projekter() {
     }, [selectedId]);
 
     return (
-        <div className="bg-mainbg py-[30vh] min-h-[120vh] w-full overflow-hidden "> 
+        <div ref={containerRef} id='projekter' className="bg-mainbg relative  min-h-[120vh] w-full overflow-hidden z-30"> 
             <div className='flex flex-col items-start pl-36 relative'>
                 <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-[10vh]'>udvalgte projekter</h2>
                 <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-18  font-epic text-[48px] text-white  '>
@@ -92,7 +124,7 @@ export default function Projekter() {
                             </button>
                             <div
                                 ref={(el) => (tagsRefs.current[project.id] = el)}
-                                className="font-body text-[28px] text-white "
+                                className="font-body text-[28px] text-white"
                                 >
                                 {project.tags.join(' | ')}
                             </div>
@@ -101,7 +133,7 @@ export default function Projekter() {
                                 src={project.preview}
                                 alt={project.title}
                                 style={{ left: '-50vw' }}
-                                className="absolute top-1/2 -translate-y-1/2 w-[30vw] pointer-events-none"
+                                className="absolute top-0 -translate-y-1/2 w-[30vw] pointer-events-none"
                             />
                         </div>
                     ))}

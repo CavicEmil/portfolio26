@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useTexture, Html } from '@react-three/drei';
 import gsap from 'gsap';
-import dummyProflie from '../assets/katrina.jpg';
+import dummyProflie from '../assets/dummymedia.svg';
 
 
 export default function TestimonialCard({ data, position, angle, isSelected, isAnySelected, onSelect, onDeselect }) {

@@ -32,10 +32,10 @@ export default function OmMig({ onNavigateKontakt }) {
                             introStarted.current = true;
                             play('intro');
                             setIntroPlayed(true);
-                        }
+                            }
+                        },
                     },
-                },
-            });
+                });
 
             tl.fromTo(imgRef.current,
                 { yPercent: +100 },
@@ -54,17 +54,17 @@ export default function OmMig({ onNavigateKontakt }) {
 
     const handleOption = (option) => {
         if (option.action === 'scrollKontakt') {
-        onNavigateKontakt();
+            onNavigateKontakt();
         } else if (option.action === 'scrollToStil') {
-        gsap.to(window, { scrollTo: { y: '#medstil', autoKill: false }, duration: 1, ease: 'power2.inOut' });
+            gsap.to(window, { scrollTo: { y: '#medstil', autoKill: false }, duration: 1, ease: 'power2.inOut' });
         } else if (option.action === 'goto') {
-        play(option.target);
+            play(option.target);
         }
     };
 
     return (
         <>
-        <div ref={containerRef} className='bg-aboutme relative'>
+        <div ref={containerRef} className='bg-aboutme relative' id='ommig'>
             <div className="absolute inset-0 bg-mainbg" />
             <div ref={bgPatternRef} className="absolute inset-0 bg-aboutme opacity-0" />
             <div className='relative z-10 flex flex-row'>
@@ -74,7 +74,7 @@ export default function OmMig({ onNavigateKontakt }) {
                 />
                 <div className='flex flex-row items-center justify-around inset-0  overflow-hidden'>
                     <section className="min-h-screen  px-36 py-24 flex flex-col gap-8">
-                        <div className="font-scribbling text-white text-[24px] whitespace-pre-line w-[50vw] pt-[25vh]">
+                        <div className="font-scribbling text-white text-[24px] whitespace-pre-line w-[50vw] pt-[20vh]">
                             {history.map((entry) =>
                             entry.segments.slice(0, entry.revealCount).map((seg, i) => {
                                 const key = `${entry.historyId}-${i}`;
@@ -92,7 +92,7 @@ export default function OmMig({ onNavigateKontakt }) {
                 </div>
             </div>
         </div>
-        <div className='bg-aboutme pt-[30vh]'>
+        <div className='bg-aboutme pt-[30vh] relative z-30'>
             <div className=' bg-abouttransition h-screen w-full font-epic font-black text-white uppercase text-center m-0 p-0' id='medstil'>
                     <div className='h-[30vh] overflow-hidden '>
                         <p className='text-[30vh] -translate-y-[5%] tracking-[-15%] -translate-x-[1vw]'>
