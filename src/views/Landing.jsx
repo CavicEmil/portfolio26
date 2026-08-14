@@ -27,9 +27,6 @@ export default function Landing() {
     const phraseRef = useRef(null);
     const [isScrambling, setIsScrambling] = useState(false);
 
-    const [isFinished, setIsFinished] = useState(false);
-
-
     useLayoutEffect(() => {
     const ctx = gsap.context(() => {
         const tl = gsap.timeline({ repeat: -1 });
@@ -68,10 +65,6 @@ export default function Landing() {
                 pin: true,          
                 //markers: true
             },
-            onComplete: () => {
-                console.log("finished with scroll")
-                setIsFinished(true);
-            },
         });
         tl.to(rotatedTextRef.current, {
             yPercent: -100,       
@@ -108,7 +101,6 @@ export default function Landing() {
     }, []);
 
     return (
-    <>
         <div ref={containerRef} className="bg-hero bg-mainbg h-screen w-full relative pt-[70px] overflow-hidden z-80">
             <div ref={zoomGroupRef} className="h-screen w-screen top-0 left-0">
                 <div ref={etopRef} className='absolute etop top-[55vh] left-[30vw]'></div>
@@ -140,19 +132,11 @@ export default function Landing() {
                     </span>
                 </div>
             </div>
-
             <div className="absolute inset-0 flex items-center justify-center">
                 <h1 className="text-white font-epic font-semibold text-[32px] tracking-[-0.2rem] uppercase">
                 UX/UI Designer & Udvikler
                 </h1>
             </div>
         </div>
-        { !isFinished &&
-        <div className="bg-mainbg py-[30vh] min-h-[120vh] w-full overflow-hidden z-20 fixed top-0"> 
-            <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-[10vh] '>udvalgte projekter</h2>
-        </div>
-        }
-    </>
-
     );
 }

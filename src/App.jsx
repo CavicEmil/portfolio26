@@ -88,16 +88,8 @@ export default function App() {
       <Header activeSection={activeSection} onNavigate={scrollToSection}/>
       <Landing />
       {isLoading && <LoadingScreen onLoaded={() => setIsLoading(false)} />}
-        {/* <div ref={projekterRef} className='bg-mainbg fixed inset-0 z-0'
-          style={{ opacity: 1 }}
-        > */}
-          <Projekter />
-      {/*  </div>
-       <div ref={ommigRef} className='bg-aboutme fixed inset-0 z-0'
-      style={{ opacity: 0 }}
-        > */}
-        <OmMig />
-      {/* </div> */}
+      <Projekter />
+      <OmMig />
       <Kontakt />
       <Footer />
    </>

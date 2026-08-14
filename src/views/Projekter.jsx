@@ -58,9 +58,9 @@ export default function Projekter() {
             window.removeEventListener('wheel', handleWheel);
         };
     }, [selectedId]);
-/* absolute top-[80vh] */
+
     return (
-        <div className="bg-mainbg py-[30vh] min-h-[120vh] w-full overflow-hidden z-70 "> 
+        <div className="bg-mainbg py-[30vh] min-h-[120vh] w-full overflow-hidden "> 
             <div className='flex flex-col items-start pl-36 relative'>
                 <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-[10vh]'>udvalgte projekter</h2>
                 <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-18  font-epic text-[48px] text-white  '>
