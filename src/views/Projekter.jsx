@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import previewdummy from '../assets/dummymedia.svg';
+import preview1 from '../assets/proj1/kh-hero.png';
+import preview2 from '../assets/proj2/preview.png';
+import preview3 from '../assets/proj3/preview.png';
+import { projects } from '../data/projects.js';
 import ProjektDetail from '../components/ProjektDetail';
 
 
@@ -11,9 +14,9 @@ export default function Projekter() {
     const mainBgRef = useRef(null);
 
     const projects = [
-        { id: 'kunsthalmuseum', title: 'Kunsthal Museum', tags: ['Branding', 'Webdesign', 'Development'] , preview: previewdummy },
-        { id: 'blaasol', title: 'Blå Sol Festival', tags: ['Forskning', 'UX/UI Design', 'Development'], preview: previewdummy },
-        { id: 'spielcafeenadmin', title: 'Spielcafeen Adminpanel', tags: ['Logonsikkerhed', 'CRUD', 'Development'], preview: previewdummy }
+        { id: 'kunsthalmuseum', title: 'Kunsthal Museum', tags: ['Branding', 'Webdesign', 'Development'] , preview: preview1 },
+        { id: 'blaasol', title: 'Blå Sol Festival', tags: ['Forskning', 'UX/UI Design', 'Development'], preview: preview2 },
+        { id: 'spielcafeenadmin', title: 'Spielcafeen Adminpanel', tags: ['Logonsikkerhed', 'CRUD', 'Development'], preview: preview3 }
     ];
 
     const [selectedId, setSelectedId] = useState(null);
@@ -74,22 +77,6 @@ export default function Projekter() {
         return () => ctx.revert();
     }, []);
 
-    useEffect(() => {
-        if (!selectedId) return;
-
-        const handleWheel = (e) => {
-            e.preventDefault();
-            scrollAreaRef.current.scrollLeft += e.deltaY;
-        };
-
-        document.body.style.overflow = 'hidden';
-        window.addEventListener('wheel', handleWheel, { passive: false });
-
-        return () => {
-            document.body.style.overflow = '';
-            window.removeEventListener('wheel', handleWheel);
-        };
-    }, [selectedId]);
 
     return (
         <div ref={containerRef} id='projekter' className="bg-mainbg relative  min-h-[120vh] w-full overflow-hidden z-30"> 
@@ -133,7 +120,7 @@ export default function Projekter() {
                                 src={project.preview}
                                 alt={project.title}
                                 style={{ left: '-50vw' }}
-                                className="absolute top-0 -translate-y-1/2 w-[30vw] pointer-events-none"
+                                className="absolute top-0 -translate-y-1/2 h-[50vh] w-auto pointer-events-none"
                             />
                         </div>
                     ))}
