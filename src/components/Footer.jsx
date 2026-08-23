@@ -18,6 +18,7 @@ export default function Footer({ onNavigateToppen }) {
       <div className={`h-full w-[50vw] absolute bg-mainbg right-0 p-36 transition-transform duration-900 ease-in-out transform ${showImprint ? '-translate-x-0' : 'translate-x-full'}`}>
         <p className='font-bodoni text-[36px] text-white pb-12'>Anerkendelse</p>
         <p className='font-body text-lg text-white'>
+          Konceptualisering, Design & Udvikling af Emil Čavić <br/>
           En særlig tak til: <br/>
           Hero billede: Peder Severin Krøyer 'Sankt Hansblus på Skagen strand' <br/>
           Kontakt billede: Carl Bloch 'Fra et romersk osteria' <br/>

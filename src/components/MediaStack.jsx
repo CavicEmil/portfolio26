@@ -1,46 +1,57 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
-export default function MediaStack({ media, panelRef }) {
-  const stackRef = useRef(null);
-  const cardRefs = useRef([]);
+const OFFSET = 15;
+
+export default function MediaStack({ media }) {
+  const [order, setOrder] = useState(media.map((_, i) => i));
+  const [ratio, setRatio] = useState(null);
+  const cardRefs = useRef({});
+  const isFirstRender = useRef(true);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = cardRefs.current;
-      cards.forEach((card, i) => {
-        if (i > 0) gsap.set(card, { scale: 0.94, opacity: 0, yPercent: 10 });
-      });
+    order.forEach((mediaIndex, depth) => {
+      const el = cardRefs.current[mediaIndex];
+      if (!el) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: stackRef.current,
-          scroller: panelRef.current,
-          horizontal: true,
-          start: 'left 60%',
-          end: `+=${(cards.length - 1) * 400}`,
-          scrub: 1,
-          pin: true,
-        },
-      });
+      gsap.set(el, { zIndex: order.length - depth });
 
-      cards.forEach((card, i) => {
-        if (i === 0) return;
-        tl.to(cards[i - 1], { scale: 0.94, opacity: 0.4, duration: 1 }, i - 1)
-          .to(card, { scale: 1, opacity: 1, yPercent: 0, duration: 1 }, i - 1);
-      });
-    }, stackRef);
-    return () => ctx.revert();
-  }, [media]);
+      if (isFirstRender.current) {
+        gsap.set(el, { x: depth * OFFSET, y: depth * OFFSET });
+      } else {
+        gsap.to(el, {
+          x: depth * OFFSET,
+          y: depth * OFFSET,
+          duration: 0.5,
+          ease: 'power2.out',
+        });
+      }
+    });
+    isFirstRender.current = false;
+  }, [order]);
+
+  const handleClick = () => {
+    setOrder((prev) => [...prev.slice(1), prev[0]]); 
+  };
+
+  const handleFirstImageLoad = (e) => {
+    if (ratio) return; 
+    setRatio(e.target.naturalWidth / e.target.naturalHeight);
+  };
 
   return (
-    <div ref={stackRef} className="relative w-[40vw] h-[70vh] flex-shrink-0">
+    <div className="relative h-[60vh] flex-shrink-0 mr-16"
+      style={{ aspectRatio: ratio ?? '3/5' }}
+      >
       {media.map((src, i) => (
         <img
+        data-cursor='click mig'
           key={src}
           ref={(el) => (cardRefs.current[i] = el)}
           src={src}
-          className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-2xl"
+          onLoad={handleFirstImageLoad}
+          onClick={handleClick}
+          className="absolute inset-0 w-full h-full object-cover rounded-lg shadow-2xl cursor-pointer"
         />
       ))}
     </div>

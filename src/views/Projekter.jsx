@@ -8,7 +8,7 @@ import { projects } from '../data/projects.js';
 import ProjektDetail from '../components/ProjektDetail';
 
 
-export default function Projekter() {
+export default function Projekter({ onNavigateKontakt }) {
 
     const containerRef = useRef(null);
     const mainBgRef = useRef(null);
@@ -81,8 +81,8 @@ export default function Projekter() {
     return (
         <div ref={containerRef} id='projekter' className="bg-mainbg relative  min-h-[120vh] w-full overflow-hidden z-30"> 
             <div className='flex flex-col items-start pl-36 relative'>
-                <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-[10vh]'>udvalgte projekter</h2>
-                <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-18  font-epic text-[48px] text-white  '>
+                <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-6'>udvalgte projekter</h2>
+                <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-32  font-epic text-[48px] text-white  '>
                     {projects.map((project) => (
                         <div
                             key={project.id}
@@ -120,13 +120,13 @@ export default function Projekter() {
                                 src={project.preview}
                                 alt={project.title}
                                 style={{ left: '-50vw' }}
-                                className="absolute top-0 -translate-y-1/2 h-[50vh] w-auto pointer-events-none"
+                                className="absolute top-0 -translate-y-1/2 max-w-[40vw] max-h-[40vh] object-contain rounded-lg w-auto pointer-events-none"
                             />
                         </div>
                     ))}
                 </div>
                 {selectedId && (
-                    <ProjektDetail projectId={selectedId} onClose={() => setSelectedId(null)} scrollAreaRef={scrollAreaRef} />
+                    <ProjektDetail projectId={selectedId} onNavigateKontakt={onNavigateKontakt} onClose={() => setSelectedId(null)} scrollAreaRef={scrollAreaRef} />
                 )}
             </div>
         </div>

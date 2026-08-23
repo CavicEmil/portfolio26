@@ -85,7 +85,7 @@ export default function App() {
       <Header activeSection={activeSection} onNavigate={scrollToSection}/>
       <Landing />
       {isLoading && <LoadingScreen onLoaded={() => setIsLoading(false)} />}
-      <Projekter />
+      <Projekter onNavigateKontakt={() => scrollToSection('kontakt')} />
       <OmMig onNavigateKontakt={() => scrollToSection('kontakt')} />
       <Kontakt />
       <Footer onNavigateToppen={() => scrollToSection('landing')} />

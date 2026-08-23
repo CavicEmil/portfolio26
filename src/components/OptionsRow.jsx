@@ -28,7 +28,7 @@ export default function OptionsRow({ options, onSelect }) {
           ref={(el) => (refs.current[i] = el)}
           onMouseEnter={() => setHovered(i)}
           onClick={() => onSelect(opt)}
-          className={`font-scribbling text-white text-[20px] ${opt.allCaps ? 'uppercase' : ''}`}
+          className={`font-epic text-white text-[20px] ${opt.allCaps ? 'uppercase' : ''}`}
         >
           {opt.label}
         </button>

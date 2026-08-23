@@ -26,7 +26,7 @@ export default function Header({activeSection, onNavigate }) {
   },[]);
 
   return (
-    <header className={`top-0 z-90 w-full h-[70px] ${
+    <header className={`top-0 z-80 w-full h-[70px] ${
       isScrolled ? 'sticky backdrop-blur-lg ' : 'absolute'
       }`}>
       <div className="w-[90vw] h-full mx-auto border-b border-accent-red">

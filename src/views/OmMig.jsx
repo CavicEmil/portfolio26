@@ -74,7 +74,7 @@ export default function OmMig({ onNavigateKontakt }) {
                 />
                 <div className='flex flex-row items-center justify-around inset-0  overflow-hidden'>
                     <section className="min-h-screen  px-36 py-24 flex flex-col gap-8">
-                        <div className="font-scribbling text-white text-[24px] whitespace-pre-line w-[50vw] pt-[20vh]">
+                        <div className="font-epic text-white text-[24px] whitespace-pre-line w-[50vw] pt-[20vh]">
                             {history.map((entry) =>
                             entry.segments.slice(0, entry.revealCount).map((seg, i) => {
                                 const key = `${entry.historyId}-${i}`;
