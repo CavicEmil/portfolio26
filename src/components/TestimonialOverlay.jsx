@@ -47,7 +47,13 @@ export default function TestimonialOverlay({ data, onClose }) {
               {data.ratings.map((r) => (
                 <p key={r.adjective}>{r.adjective} — {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}</p>
               ))}
-              <a href={data.linkedin} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">LinkedIn</a>
+              {data.linkedin &&
+              (
+                <a href={data.linkedin} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">LinkedIn</a>
+              )}
+              {data.portfolio && (
+                <a href={data.portfolio} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">Julias portfolio</a>
+              )}
             </div>
           </div>
         )}

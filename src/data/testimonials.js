@@ -47,9 +47,9 @@ export const testimonials = [
     {
         id: 't4', 
         type:'testimonial',
-        name: 'Julia Maehren Vingren',
+        name: 'Julia Maehren',
         profileImg: Julia,
-        linkedin: 'https://www.linkedin.com',
+        portfolio: 'https://juliamaehrenportfolio.framer.website/',
         testimonial: 'At have Emil i min gruppe var som at have ro i sindet. Jeg behøvede ikke at bekymre mig om, hvorvidt han udførte sin del, eller om jeg skulle guide ham igennem hver eneste opgave. Emil er ekstremt fokuseret på sine opgaver og arbejder ihærdigt mod målet. Alt i alt, når man arbejder med Emil, ved man, at det aktuelle projekt har stort potentiale!',
         ratings: [
             { adjective: 'Teknisk tankesæt', stars: 5 },
