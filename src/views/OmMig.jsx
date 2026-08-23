@@ -106,7 +106,7 @@ export default function OmMig({ onNavigateKontakt }) {
                     </div>
             </div>
         </div>
-        <section className="relative h-screen bg-accent-red overflow-hidden pb-[15vh]">
+        <section className="relative h-screen bg-accent-red overflow-hidden pb-[25vh]">
             <h3 className="absolute inset-0 flex items-center justify-center text-center font-lobster text-[10vh] text-black/7 uppercase pointer-events-none select-none">
                 Udtalelser <br/> & <br/> mere
             </h3>
