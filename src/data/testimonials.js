@@ -1,8 +1,14 @@
-import Shandor from '../assets/Shandor.png';
+import Shandor from '../assets/Shandor.jpg';
 import Bibi from '../assets/Bibi.png';
 import Katrina from '../assets/katrina.jpg';
 import Julia from '../assets/Julia.jpg';
 import Josie from '../assets/Josie.png';
+import personalitypreview from '../assets/personalitypreview.png';
+import samletudtalelser from '../assets/samletudtalelser.pdf';
+import udtalelserpreview from '../assets/udtalelserpreview.png';
+import emilcaviccv from '../assets/EmilCavicCV26.pdf';
+import cvpreview from '../assets/cvpreview.png';
+
 
 export const testimonials = [
     {
@@ -10,7 +16,6 @@ export const testimonials = [
         type:'testimonial',
         name: 'Shandor Andersen Cardoso',
         profileImg: Shandor,
-        linkedin: 'https://www.linkedin.com',
         testimonial: 'Emil lader dyb professionel stolthed præge alt, hvad han foretager sig. At arbejde med ham er struktureret, organiseret og effektivt. Alligevel formår han altid at opretholde en venlig og humoristisk stemning blandt sine kollegaer. Emil stræber efter det bedste i sit arbejde – og det mærkes.',
         ratings: [
             { adjective: 'Teamwork', stars: 5 },
@@ -34,9 +39,11 @@ export const testimonials = [
     {
         id: 't3', 
         type:'testimonial',
-        name: 'Katrina Priess Madsen',
+        name: 'Katrīna Priess Madsen',
         profileImg: Katrina,
-        linkedin: 'https://www.linkedin.com',
+        linkedin: 'https://www.linkedin.com/in/katr%C4%ABna-priess-madsen-755264380/',
+        email: 'katrinabekereb@gmail.com',
+        phone: '53 57 21 77',
         testimonial: 'At arbejde med Emil var rigtig behageligt. Jeg følte, at han var en tryg person at gå til med spørgsmål og problemer. Han havde altid en god løsning, og jeg vidste, at jeg kunne stole på ham.',
         ratings: [
             { adjective: 'Lærenem', stars: 5 },
@@ -62,7 +69,6 @@ export const testimonials = [
         type:'testimonial',
         name: 'Josephine Scharf',
         profileImg: Josie,
-        linkedin: 'https://www.linkedin.com',
         testimonial: 'Jeg nød at arbejde med Emil, for han er professionel og målorienteret. Han er en fantastisk holdspiller, fordi han kombinerer gruppens interesser med sine egne. Stor kompetence!',
         ratings: [
             { adjective: 'Åbent sind', stars: 5 },
@@ -71,16 +77,26 @@ export const testimonials = [
         ],
     },
     {
+        id: 'b0',
+        type: 'personality',
+        title: 'Personlighed: ENTJ-A',
+        profileImg: personalitypreview,
+        tekst: 'As an ENTJ (Commander), you are a natural-born leader with an unparalleled drive to turn your visions into reality. Your strategic mind excels at seeing the big picture, identifying long-term goals, and devising efficient plans to achieve them. You possess a rare combination of confidence, charisma, and decisiveness that draws others to you and inspires them to follow your lead. Your approach to life is characterized by ambition and a relentless pursuit of success. You have an innate ability to... ',
+        link: 'https://www.16personalities.com/profiles/entj-a/x/61fmblcxb', 
+    },
+    {
         id: 'b1',
-        type: 'bonuscontent',
-        label: 'Gem alle svar',
-        file: '',
+        type: 'pdf',
+        label: 'Samlet udtalelser',
+        profileImg: udtalelserpreview,
+        file: samletudtalelser,
     },
     {
         id: 'b2',
-        type: 'bonuscontent',
-        label: 'Gem min CV',
-        file: '',
+        type: 'pdf',
+        label: 'mit CV',
+        profileImg: cvpreview,
+        file: emilcaviccv,
     }
 
 ];

@@ -28,7 +28,7 @@ export default function TestimonialOverlay({ data, onClose }) {
 
       <div
         ref={panelRef}
-        className="max-w-[37vw] fixed inset-x-[33%] inset-y-[10%] bg-mainbg/30 z-50 rounded-lg p-12 overflow-y-auto font-bodoni text-offwhite"
+        className="max-w-[39vw] fixed inset-x-[33%] inset-y-[10%] bg-mainbg/30 z-50 rounded-lg p-12 overflow-y-auto font-bodoni text-offwhite"
       >
         <img src={close}
           onClick={onClose}
@@ -36,17 +36,28 @@ export default function TestimonialOverlay({ data, onClose }) {
           className="absolute top-6 right-6 w-12 h-12 cursor-pointer"
         />
 
-        {data.type === 'cv' ? (
-          <a href={data.file} download className="text-[28px] underline">{data.label}</a>
-        ) : (
+        {data.type === 'pdf' && (
+          <div className="flex flex-col gap-4 mt-6 font-epic text-white">
+            <embed src={data.file} type="application/pdf" className="w-full h-[70vh] rounded-lg" />
+            <a href={data.file} download className="underline hover:text-accent-red transition-colors">
+              Download {data.label}
+            </a>
+          </div>
+        )}
+        {data.type === 'testimonial' && (
           <div className="flex gap-12 items-start">
+            <div className="min-w-[200px] font-epic text-white">
             <img src={data.profileImg} className="w-[200px] h-[200px] object-cover rounded-full flex-shrink-0" />
-            <div className="font-body text-white">
-              <h3 className="font-epic text-[32px] text-white mb-4">{data.name}</h3>
-              <p className="text-[20px] leading-relaxed mb-6">{data.testimonial}</p>
-              {data.ratings.map((r) => (
-                <p key={r.adjective}>{r.adjective} — {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}</p>
-              ))}
+            {data.phone &&
+              (
+                <a href={`tel:${data.phone}`} target='_blank' linktype='email' className="underline mt-6 block hover:text-accent-red transition-colors">
+                  Tel. {data.phone}</a>
+              )}
+              {data.email &&
+              (
+                <a href={`mailto:${data.email}`} target='_blank' linktype='email' className="underline mt-6 block hover:text-accent-red transition-colors">
+                  E-Mail</a>
+              )}
               {data.linkedin &&
               (
                 <a href={data.linkedin} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">LinkedIn</a>
@@ -54,6 +65,22 @@ export default function TestimonialOverlay({ data, onClose }) {
               {data.portfolio && (
                 <a href={data.portfolio} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">Julias portfolio</a>
               )}
+            </div>
+            <div className="font-body text-white">
+              <h3 className="font-epic text-[32px] text-white my-4">{data.name}</h3>
+              <p className="text-[20px] leading-relaxed mb-6">{data.testimonial}</p>
+              {data.ratings.map((r) => (
+                <p key={r.adjective}>{r.adjective} — {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}</p>
+              ))}
+            </div>
+          </div>
+        )}
+        {data.type === 'personality' && (
+          <div className="flex gap-12 items-start">
+            <div className="font-body text-white">
+              <h3 className="font-epic text-[32px] text-white my-4">{data.title}</h3>
+              <p className="text-[20px] leading-relaxed mb-6">{data.tekst}</p>
+              <a href={data.link} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">Se det hele her</a>
             </div>
           </div>
         )}
