@@ -1,5 +1,5 @@
 import Shandor from '../assets/Shandor.jpg';
-import Bibi from '../assets/Bibi.png';
+import Bibi from '../assets/Bibi.jpg';
 import Katrina from '../assets/katrina.jpg';
 import Julia from '../assets/Julia.jpg';
 import Josie from '../assets/Josie.png';
@@ -28,7 +28,6 @@ export const testimonials = [
         type:'testimonial',
         name: 'Bibiana Tonková',
         profileImg: Bibi,
-        linkedin: 'https://www.linkedin.com',
         testimonial: 'Emil var en af de bedste ledere, jeg har haft glæden af at arbejde med. Han førte holdet konsekvent og effektivt, traf rettidige beslutninger og holdt altid fokus på at opfylde kundens behov. Og han glemte aldrig at krydre det med en god joke for at lette stemningen og få holdet til at tackle udfordringerne med gejst og energi.',
         ratings: [
             { adjective: 'Problemløsning', stars: 5 },

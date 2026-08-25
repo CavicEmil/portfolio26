@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import ecshaped from '../assets/ecshaped.png';
+import Nyheder from '../components/Nyheder';
 
 export default function Landing() {
     const containerRef = useRef(null);
@@ -13,7 +14,7 @@ export default function Landing() {
 
     const sequence = [
     { from: 'føler med dit brand.', to: 'gå op i dit brand.' },
-    { from: 'købe dit grej.', to: 'føler med dit brand.' },
+    { from: 'købe dit grej.', to: 'indleve sig i dit brand.' },
     { from: 'gå op i dit brand.', to: 'købe dit grej.' },
     ];
 
@@ -79,6 +80,7 @@ export default function Landing() {
                 duration: 0.7,          
             }, 0)
             .to([ebotRef.current], {
+                 z: 500,
                 scale: 1.5,
                 y: '-5vh',
                 ease: 'power2.out',
@@ -96,14 +98,14 @@ export default function Landing() {
 
     return (
         <>
-            <div ref={containerRef} className="bg-hero bg-mainbg min-h-screen w-full relative pt-[70px] overflow-hidden z-20">
+            <div ref={containerRef} className="bg-hero bg-mainbg min-h-screen w-full relative pt-[70px] overflow-hidden z-20 perspective-distant transform-3d">
                 <div ref={zoomGroupRef} className="min-h-screen w-screen top-0 left-0">
                     <div ref={etopRef} className='absolute etop ' />
                     <div className='absolute emid top-[46vh] left-[44vw]' />
-                    <div ref={ebotRef}  className='absolute ebot ' />
+                    <div ref={ebotRef}  className='absolute ebot transform-3d' />
                     <img src={ecshaped} className='absolute h-[50vh] w-auto top-[26vh] left-[30vw] transform translate-y-[1px]'/>               
-                    <div className="absolute pr-8 right-0 top-[300px] h-screen w-1/3 flex items-start justify-start ">
-                        <div className="text-white font-epic text-[26px] font-semibold pr-[200px]">
+                    <div className="absolute pr-8 right-0 top-[30vh] h-screen w-1/3 flex items-start justify-start ">
+                        <div className="text-white font-epic text-[24px] font-semibold pr-[5vw]">
                             <p>Hej, jeg er Emil.</p>
                             <p>Jeg læser Multimediedesign.</p>
                             <p>Jeg tror på, at godt design handler om at forstå brugerens behov.</p>
@@ -120,19 +122,21 @@ export default function Landing() {
                         </div>
                     </div>
                 </div>
+                <Nyheder />
                 <div ref={rotatedTextRef} className="absolute min-h-screen left-[222px] bottom-10 flex items-end">
                     <div className="transform -rotate-90 origin-left flex items-start">
                         <span className="text-white font-bodoni font-black text-[32px] md:text-[calc(32px+1vw)] lg:text-[calc(32px+1vw)] tracking-[0.1em] whitespace-nowrap">
-                            UX/UI Designer & Udvikler
+                            UX/UI Designer & Webudvikler
                         </span>
                     </div>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                     <h1 className="text-white font-epic font-semibold text-[32px] tracking-[-0.2rem] uppercase">
-                    UX/UI Designer & Udvikler
+                    UX/UI Designer & Webudvikler
                     </h1>
                 </div>
             </div>
+            
             <div className='bg-mainbg h-full w-full fixed top-0 left-0 ' />
         </>
     );
