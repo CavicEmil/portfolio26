@@ -28,7 +28,7 @@ export default function TestimonialOverlay({ data, onClose }) {
 
       <div
         ref={panelRef}
-        className="max-w-[39vw] fixed inset-x-[33%] inset-y-[10%] bg-mainbg/30 z-50 rounded-lg p-12 overflow-y-auto font-bodoni text-offwhite"
+        className=" w-[90dvw] xl:w-[35vw] fixed inset-x-[5%] xl:inset-x-[33%] inset-y-[10%] bg-mainbg/30 z-50 rounded-lg p-6 xl:p-12 overflow-y-auto font-bodoni text-offwhite"
       >
         <img src={close}
           onClick={onClose}
@@ -37,15 +37,15 @@ export default function TestimonialOverlay({ data, onClose }) {
         />
 
         {data.type === 'pdf' && (
-          <div className="flex flex-col gap-4 mt-6 font-epic text-white">
-            <embed src={data.file} type="application/pdf" className="w-full h-[70vh] rounded-lg" />
+          <div className="flex flex-col gap-4 mt-14 w-full font-epic text-white">
+            <embed src={data.file} type="application/pdf" className="w-full h-[60dvh]  rounded-lg" />
             <a href={data.file} download className="underline hover:text-accent-red transition-colors">
               Download {data.label}
             </a>
           </div>
         )}
         {data.type === 'testimonial' && (
-          <div className="flex gap-12 items-start">
+          <div className="flex flex-col xl:flex-row gap-12 items-start">
             <div className="min-w-[200px] font-epic text-white">
             <img src={data.profileImg} className="w-[200px] h-[200px] object-cover rounded-full flex-shrink-0" />
             {data.phone &&
@@ -63,7 +63,7 @@ export default function TestimonialOverlay({ data, onClose }) {
                 <a href={data.linkedin} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">LinkedIn</a>
               )}
               {data.portfolio && (
-                <a href={data.portfolio} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">Julias portfolio</a>
+                <a href={data.portfolio} target="_blank" rel="noreferrer" className="underline mt-6 block hover:text-accent-red transition-colors">Portfolio</a>
               )}
             </div>
             <div className="font-body text-white">

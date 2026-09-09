@@ -26,17 +26,19 @@ export default function LoadingScreen({ onLoaded }) {
 
 
   return (
-    <div className={`fixed inset-0 bg-accent-red bg-loading flex flex-col justify-center items-center z-100 
+    <div className={`fixed h-full w-screen inset-0 bg-accent-red bg-loading z-100 
         ${
         isExiting ? "animate-mask-reveal" : ""
         }
       `}>
-      <div className="text-center">
-        <h1 className="font-bodoni text-[40vh] text-white uppercase">{text}</h1>
-      </div>
-      <p className="absolute bottom-[15vh] text-center font-bodoni text-[10vh] text-white uppercase animate-pulseloader">
-            Indlæser
-        </p>
+        <div className="h-screen flex flex-col justify-center items-center">
+          <div className="text-center">
+            <h1 className="font-bodoni  xl:text-[40dvh] text-[clamp(2.5rem,40dvh,5rem)] text-white uppercase">{text}</h1>
+          </div>
+          <p className="absolute xl:bottom-[15dvh] mt-[25dvh] text-center font-bodoni xl:text-[10dvh] text-[clamp(1.5rem,10dvh,4rem)] text-white uppercase animate-pulseloader">
+                Indlæser
+            </p>
+        </div>
     </div>
   );
 }

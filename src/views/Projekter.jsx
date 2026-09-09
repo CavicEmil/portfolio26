@@ -80,7 +80,7 @@ export default function Projekter({ onNavigateKontakt }) {
 
     return (
         <div ref={containerRef} id='projekter' className="bg-mainbg relative  min-h-[120vh] w-full overflow-hidden z-30"> 
-            <div className='flex flex-col items-start pl-36 relative'>
+            <div className='flex flex-col items-start pl-4 xl:pl-36 relative'>
                 <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-6'>udvalgte projekter</h2>
                 <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-32  font-epic text-[48px] text-white  '>
                     {projects.map((project) => (

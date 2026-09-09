@@ -26,10 +26,10 @@ export default function Header({activeSection, onNavigate }) {
   },[]);
 
   return (
-    <header className={`top-0 z-80 w-full h-[70px] ${
+    <header className={`top-0 z-80 w-screen h-[70px] ${
       isScrolled ? 'sticky backdrop-blur-lg ' : 'absolute'
       }`}>
-      <div className="w-[90vw] h-full mx-auto border-b border-accent-red">
+      <div className="w-[90dvw] h-full mx-auto border-b border-accent-red">
         <div className="flex justify-between items-center h-full w-full mx-auto px-8">
           <div className="flex-1"></div>
           <div className="flex-1"></div>
@@ -38,7 +38,7 @@ export default function Header({activeSection, onNavigate }) {
               <button
                 key={link.id}
                 onClick={() => onNavigate(link.id)}
-                className={`font-body text-white relative hover:text-white transition-colors 
+                className={`font-body text-[1rem] lg:text-[18px] text-white relative hover:text-white transition-colors 
               duration-300 hover:cursor-cell before:content-[''] before:absolute before:inset-0 
               before:bg-accent-red before:transform before:z-[-1] before:transition-opacity 
               before:opacity-0 hover:before:opacity-100 ${link.classprop}

@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 export default function CustomCursor() {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouchDevice) return null;
     const dotRef = useRef(null);
     const labelRef = useRef(null);
     const posRef = useRef({ x: 0, y: 0 });

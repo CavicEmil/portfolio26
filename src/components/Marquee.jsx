@@ -27,7 +27,7 @@ export default function Marquee() {
   }, []);
 
   return (
-    <div className="overflow-hidden w-full ">
+    <div className="overflow-hidden w-screen">
       <div ref={trackRef} className="flex gap-12 w-max text-white text-[20px] py-12 leading-1">
         {[...items, ...items].map((item, i) => (
           <span key={i} className="flex items-center gap-2 whitespace-nowrap">{item}</span>

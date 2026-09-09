@@ -15,6 +15,7 @@ export const testimonials = [
         id: 't1', 
         type:'testimonial',
         name: 'Shandor Andersen Cardoso',
+        portfolio: 'https://concerned-variations-947334.framer.app/',
         profileImg: Shandor,
         testimonial: 'Emil lader dyb professionel stolthed præge alt, hvad han foretager sig. At arbejde med ham er struktureret, organiseret og effektivt. Alligevel formår han altid at opretholde en venlig og humoristisk stemning blandt sine kollegaer. Emil stræber efter det bedste i sit arbejde – og det mærkes.',
         ratings: [
@@ -68,6 +69,7 @@ export const testimonials = [
         type:'testimonial',
         name: 'Josephine Scharf',
         profileImg: Josie,
+        linkedin: 'https://www.linkedin.com/in/josephine-scharf-3978b9431/',
         testimonial: 'Jeg nød at arbejde med Emil, for han er professionel og målorienteret. Han er en fantastisk holdspiller, fordi han kombinerer gruppens interesser med sine egne. Stor kompetence!',
         ratings: [
             { adjective: 'Åbent sind', stars: 5 },

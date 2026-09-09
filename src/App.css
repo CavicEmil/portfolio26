@@ -91,30 +91,19 @@
 
 .etop {
   background-color: var(--color-accent-red);
-  /* transform-origin: left !important;
-  transform: rotate(-45deg) !important; */
-  width: 80vh;
-  height: 50px;
-  top: 30vh;
-  left: 15vw;
+  width: 80dvh;
+  height: 61px;
 }
 
 .ebot {
   background-color: var(--color-accent-red);
-  /* transform-origin: left !important;
-  transform: rotate(45deg) !important; */
-  width: 80vh;
-  height: 50px;
-  top: 93vh;
-  left: 25vw;
+  width: 80dvh;
+  height: 61px;
 }
 
 .emid {
   background-color: var(--color-accent-red);
-  width: 17vw;
-  height: 50px;
-  top: 46vh;
-  left: 44vw;
+  height: 61px;
 }
 
 @layer utilities {
