@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { projects } from '../data/projects';
+import { useIsMobile } from '../hooks/useIsMobile';
 import close from '../assets/close.svg'
 import khhero from '../assets/proj1/kh-hero.png';
 import khtablet1 from '../assets/proj1/kh-tablet.png';
@@ -26,6 +27,7 @@ import MediaStack from './MediaStack';
 
 
 export default function ProjektDetail({ projectId, onClose, onNavigateKontakt }) {
+    const isMobile = useIsMobile();
 
     const projdata = [
         {
@@ -88,7 +90,8 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
 
     function VideoPlayer({ src }) {
         return (
-            <video autoPlay muted loop playsInline controls preload="metadata" className="w-[50vw] h-auto object-cover rounded-lg bg-black flex-shrink-0">
+            <video autoPlay muted loop playsInline controls preload="metadata" 
+            className={ isMobile ? 'w-dvw h-auto object-cover rounded-lg bg-black flex-shrink-0' : "w-[50vw] h-auto object-cover rounded-lg bg-black flex-shrink-0"}>
                 <source src={src} />
                 Din browser understøtter ikke videoafspilning.
             </video>
@@ -99,34 +102,42 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
         return /\.(mp4|webm|mov)$/i.test(src);
     }
 
-    function Section({ section, panelRef }) {
+    function Section({ section, hasMedia, panelRef, isMobile }) {
         return (
-            <div className="min-w-[40vw] h-full flex-shrink-0 flex items-center gap-16 px-24">
-            {section.media && section.media.length > 1 && <MediaStack media={section.media} panelRef={panelRef} />}
+            <div className={
+                        isMobile
+                        ? 'w-full flex flex-col gap-8 px-6 py-6'
+                        : `${hasMedia ? 'w-[90vw]' : 'min-w-[40vw]'} h-full flex-shrink-0 flex items-center gap-16 px-24`
+                    }
+            >
+            {section.media && section.media.length > 1 && <MediaStack media={section.media} isMobile={isMobile} />}
 
             {section.media && section.media.length === 1 && (
                 isVideoFile(section.media[0])
                 ? <VideoPlayer src={section.media[0]} />
-                : <img src={section.media[0]} className="w-[40vw] h-auto pt-12 object-cover rounded-lg flex-shrink-0" />
+                : <img src={section.media[0]} className={isMobile ? 
+                    'w-full h-auto object-contain rounded-lg' 
+                    : 'max-w-[40vw] max-h-[70vh] w-auto h-auto object-contain mx-auto rounded-lg'} 
+                />
             )}
 
             {section.graph && (
-                <div className="w-[40vw] flex-shrink-0 font-body text-white">
+                <div className="xl:w-[40vw] w-[95dvw] flex-shrink-0 font-body text-white">
                 <h3 className="font-bodoni text-[28px] text-offwhite mb-4 border-b border-offwhite">{section.graph.title}</h3>
                 <div className='flex flex-row divide-x divide-offwhite gap-12'>
-                    <ul className="mb-6 px-12">
-                        {section.graph.points.map((p) => <li key={p} className='w-[10vw]'>{p}</li>)}
+                    <ul className="mb-6 px-6 xl:px-12">
+                        {section.graph.points.map((p) => <li key={p} className='w-[20dvw] xl:w-[10vw]'>{p}</li>)}
                     </ul>
                     <p>{section.graph.conclusion}</p>
                 </div>
                 </div>
             )}
             {section.learningscode && (
-                <div className="max-w-[40vw] w-fit flex-shrink-0 font-body text-white space-y-8">
+                <div className="xl:max-w-[40vw] w-fit flex-shrink-0 font-body text-white xl:space-y-8">
                     <h3 className="font-bodoni text-[28px] text-right pr-12 text-offwhite mb-4 border-b border-offwhite ">Lærdomme</h3>
-                    <p className="text-[20px] max-w-[30vw] leading-relaxed">{section.learningsdesign}</p>
-                    <p className="text-[20px] max-w-[30vw] leading-relaxed">{section.learningscode}</p>
-                    <p className="text-[20px] max-w-[30vw] leading-relaxed">Hvis du har interesse i at vide mere om projektet, processen og min rolle i det, så lad os bare snakke om det!</p> 
+                    <p className="text-[20px] xl:max-w-[30vw] leading-relaxed">{section.learningsdesign}</p>
+                    <p className="text-[20px] xl:max-w-[30vw] leading-relaxed">{section.learningscode}</p>
+                    <p className="text-[20px] xl:max-w-[30vw] leading-relaxed">Hvis du har interesse i at vide mere om projektet, processen og min rolle i det, så lad os bare snakke om det!</p> 
                     <p onClick={ () => {onNavigateKontakt(); handleClose();}} className="pl-18 hover:font-bodoni text-offwhite text-[20px] cursor-pointer hover:text-accent-red transition-colors"> 
                         Kontakt mig, så mødes vi!
                     </p>
@@ -134,8 +145,8 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
             )}
 
 
-            <div className="flex-1 font-body text-white">
-                <p className="text-[20px] max-w-[30vw] leading-relaxed">{section.text}</p>
+            <div className={isMobile ? 'w-full font-body text-white' : 'flex-1 font-body text-white'}>
+                <p className="text-[20px] xl:max-w-[30vw] leading-relaxed">{section.text}</p>
                 {section.links && (
                 <div className="flex flex-col gap-2 mt-6">
                     {section.links.map((l) => (
@@ -197,6 +208,8 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
 
     useEffect(() => {
         const handleClickOutside = (e) => {
+            console.log("Clicked target:", e.target);
+  console.log("Is target inside panelRef?", panelRef.current?.contains(e.target));
             if (panelRef.current && !panelRef.current.contains(e.target)) handleClose();
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -204,18 +217,25 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
     }, []);
 
     useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = ''; };
+    }, []);
+
+    useEffect(() => {
+        if(isMobile) return;
+        
         const el = panelRef.current;
         const handleWheel = (e) => {
             e.preventDefault();
             el.scrollLeft += e.deltaY;
         };
-        document.body.style.overflow = 'hidden';
+
         el.addEventListener('wheel', handleWheel, { passive: false });
         return () => {
-            document.body.style.overflow = '';
             el.removeEventListener('wheel', handleWheel);
-        };
-    }, []);
+            };
+        
+    }, [isMobile]);
 
     useEffect(() => {
         const handleLoad = () => ScrollTrigger.refresh();
@@ -229,27 +249,32 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
                         
             <div
                 ref={panelRef}
-                className="fixed top-0 right-0 h-[90vh] w-[93vw] bg-portfoliobg z-40 overflow-x-auto overflow-y-hidden"
+                className={
+                            isMobile
+                            ? 'bg-portfoliobg fixed top-32 h-[100%] w-full bg-portfoliobg z-40 overflow-y-auto overflow-x-hidden pb-[20dvh]'
+                            : 'bg-portfoliobg fixed top-0 right-0 h-screen w-[93vw] bg-portfoliobg z-40 overflow-x-auto overflow-y-hidden'
+                        }
             >                
-                <div ref={trackRef} className="flex flex-row h-full">
-                {sections.map((section, i) => (
-                    <Section key={i} section={section} panelRef={panelRef} />
-                ))}
+                <div ref={trackRef} className={isMobile ? 'flex flex-col' : 'flex flex-row h-full'}>
+                    {sections.map((section, i) => (
+                    <Section key={i} section={section} panelRef={panelRef} isMobile={isMobile} />
+                    ))}
                 </div>
             </div>
 
-
-            <div className="fixed top-0 z-50 pointer-events-none" style={{ left: 'calc(7vw + 3rem)' }}>
-                <h2 className="font-bodoni text-[48px] text-offwhite uppercase leading-none pt-12">{project.title}</h2>
-                <p className="font-body text-[28px] text-white mt-2">{project.tags.join(' | ')}</p>
-           
-            </div>           
+            { !isMobile &&
+                <div className="fixed top-6 z-50 pointer-events-none pl-6" 
+                    style={{ left: 'calc(7vw + 3rem)' }}>
+                    <h2 className="font-bodoni text-[48px] text-offwhite uppercase leading-none pt-12">{project.title}</h2>
+                    <p className="font-body text-[28px] text-white mt-2">{project.tags.join(' | ')}</p>
+                </div>    
+            }       
 
             <img src={close}
                 onClick={handleClose}
                 aria-label="Luk"
-                className="fixed z-[99] w-12 h-12 cursor-pointer"
-                style={{ left: 'calc(3vw + 1.5rem)', top: 'calc(4vh + .5rem)' }}
+                className="z-[99] w-12 h-12 cursor-pointer backdrop-blur-lg bg-portfoliobg/2 rounded-full"
+                style={isMobile ? { position: 'fixed', left:'2dvw', top:'24dvh'} : { position:'fixed', left: 'calc(3vw + 1.5rem)', top: 'calc(4vh + .5rem)' }}
             />
         </>
     )

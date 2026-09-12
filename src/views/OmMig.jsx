@@ -64,7 +64,7 @@ export default function OmMig({ onNavigateKontakt }) {
 
     return (
         <>
-        <div ref={containerRef} className='bg-aboutme relative overflow-hidden' id='ommig'>
+        <div ref={containerRef} className='bg-aboutme relative overflow-hidden pt-[20vh]' id='ommig'>
             <div className="absolute inset-0 bg-mainbg" />
             <div ref={bgPatternRef} className="absolute inset-0 bg-aboutme opacity-0" />
             <div className='relative z-10 flex xl:flex-row flex-col'>

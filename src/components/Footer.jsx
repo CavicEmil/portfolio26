@@ -15,8 +15,8 @@ export default function Footer({ onNavigateToppen }) {
         <p className='cursor-pointer hover:text-accent-red transform transition-color transition-size duration-700 ease-in-out hover:text-[1.5rem]' onClick={toggleImprint}> Impressum </p>
       </div>
   
-      <div className={`h-full w-[50vw] absolute bg-mainbg right-0 p-36 transition-transform duration-900 ease-in-out transform ${showImprint ? '-translate-x-0' : 'translate-x-full'}`}>
-        <p className='font-bodoni text-[36px] text-white pb-12'>Anerkendelse</p>
+      <div className={`h-full xl:w-[50vw] w-[95dvw] absolute bg-mainbg right-0 p-6 xl:p-36 transition-transform duration-900 ease-in-out transform ${showImprint ? '-translate-x-0' : 'translate-x-full'}`}>
+        <p className='font-bodoni text-[36px] text-white xl:pb-12'>Anerkendelse</p>
         <p className='font-body text-lg text-white'>
           Konceptualisering, Design & Udvikling af Emil Čavić <br/>
           En særlig tak til: <br/>
@@ -32,11 +32,11 @@ export default function Footer({ onNavigateToppen }) {
         </div>
       </div>
       
-      <div className='flex flex-row gap-12 items-center justify-evenly text-[1.5rem] font-body text-white'>
+      <div className='flex flex-col xl:flex-row gap-12 items-center justify-evenly text-[1.5rem] font-body text-white'>
         <img src={tarantino} />
         <p>...tak for din opmærksomhed!</p>
        </div>
-      <div className='text-[1.5rem] font-body text-white'>Ikke fundet det, du søger? Så er det bedst du læser det hele igen fra toppen:</div>
+      <div className='text-[1.5rem] font-body text-white p-6'>Ikke fundet det, du søger? Så er det bedst du læser det hele igen fra toppen:</div>
       <div  onClick={() => onNavigateToppen()}
         className='bg-transparent hover:bg-accent-red transition-colors duration-300 cursor-pointer border-solid border-1 rounded-full border-white 
         text-epic text-white text-[2rem] pt-2 pb-4 px-4'>

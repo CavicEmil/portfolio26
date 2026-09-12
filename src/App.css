@@ -85,6 +85,14 @@
   background-position: center;
 }
 
+@media(max-width: 768px){
+   .bg-kontakt {
+        background-image:url("./assets/kontaktbgmobile.png"); 
+        background-size: cover;
+        background-position: center;
+    }
+}
+
 .bg-footer{
   background: linear-gradient(#262629,  black 80%);
 }

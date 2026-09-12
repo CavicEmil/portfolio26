@@ -1,15 +1,17 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import preview1 from '../assets/proj1/kh-hero.png';
 import preview2 from '../assets/proj2/preview.png';
 import preview3 from '../assets/proj3/preview.png';
-import { projects } from '../data/projects.js';
 import ProjektDetail from '../components/ProjektDetail';
+import MobileProjectCard from '../components/MobileProjectCard';
+import DesktopProjectRow from '../components/DesktopProjectRow';
 
 
 export default function Projekter({ onNavigateKontakt }) {
-
+    const isMobile = useIsMobile();
     const containerRef = useRef(null);
     const mainBgRef = useRef(null);
 
@@ -79,51 +81,25 @@ export default function Projekter({ onNavigateKontakt }) {
 
 
     return (
-        <div ref={containerRef} id='projekter' className="bg-mainbg relative  min-h-[120vh] w-full overflow-hidden z-30"> 
-            <div className='flex flex-col items-start pl-4 xl:pl-36 relative'>
+        <div ref={containerRef} id='projekter' className="bg-mainbg relative  xl:min-h-[120vh] w-full overflow-hidden z-30"> 
+            <div className='flex flex-col items-start xl:pl-4 xl:pl-36 relative'>
                 <h2 id="projekter-title" className='font-bodoni font-semibold text-[48px] text-offwhite pt-6'>udvalgte projekter</h2>
-                <div ref={scrollAreaRef} className='flex flex-col items-start gap-6 pt-32  font-epic text-[48px] text-white  '>
-                    {projects.map((project) => (
-                        <div
+                <div ref={scrollAreaRef} className='flex flex-col items-start xl:gap-6 pt-22 xl:pt-32  font-epic text-[48px] text-white  '>
+                    {projects.map((project) =>
+                        isMobile ? (
+                        <MobileProjectCard key={project.id} project={project} onOpen={() => setSelectedId(project.id)} />
+                        ) : (
+                        <DesktopProjectRow
                             key={project.id}
-                            className="relative w-full h-[13vh] cursor-pointer py-6"
-                            onMouseEnter={() => handleEnter(project.id)}
-                            onMouseLeave={() => handleLeave(project.id)}
-                        >
-                            <button
-                                data-cursor="se mere"
-                                onClick={() => setSelectedId(project.id)}
-                                className="relative block text-left overflow-hidden h-[52px]"
-                                
-                            >
-                                <span
-                                    ref={(el) => (defaultTitleRefs.current[project.id] = el)}
-                                    className="block font-epic text-[48px] text-white uppercase leading-none"
-                                >
-                                    {project.title}
-                                </span>
-                                <span
-                                    ref={(el) => (hoverTitleRefs.current[project.id] = el)}
-                                    className="block font-bodoni text-[48px] text-white uppercase pt-[2px] absolute top-full left-0"
-                                >
-                                    {project.title}
-                                </span>
-                            </button>
-                            <div
-                                ref={(el) => (tagsRefs.current[project.id] = el)}
-                                className="font-body text-[28px] text-white"
-                                >
-                                {project.tags.join(' | ')}
-                            </div>
-                            <img
-                                ref={(el) => (previewRefs.current[project.id] = el)}
-                                src={project.preview}
-                                alt={project.title}
-                                style={{ left: '-50vw' }}
-                                className="absolute top-0 -translate-y-1/2 max-w-[40vw] max-h-[40vh] object-contain rounded-lg w-auto pointer-events-none"
-                            />
-                        </div>
-                    ))}
+                            project={project}
+                            onEnter={handleEnter}
+                            onLeave={handleLeave}
+                            onOpen={() => setSelectedId(project.id)}
+                            refs={{ defaultTitleRefs, hoverTitleRefs, tagsRefs, previewRefs }}
+                        />
+                        )
+                    )}
+                    
                 </div>
                 {selectedId && (
                     <ProjektDetail projectId={selectedId} onNavigateKontakt={onNavigateKontakt} onClose={() => setSelectedId(null)} scrollAreaRef={scrollAreaRef} />

@@ -97,11 +97,11 @@ export default function Landing() {
             <div ref={containerRef} className="bg-hero bg-mainbg h-[100dvh] w-screen relative pt-[70px] overflow-hidden z-20 perspective-distant transform-3d">
                 <div ref={zoomGroupRef} className="h-[100dvh] w-screen top-0 left-0">
                     <div ref={etopRef} className='absolute etop -top-[35dvh] -left-[35dvw] xl:top-[30vh] xl:left-[15vw]'/>
-                    <div className='absolute emid w-[73dvw] top-[37dvh] left-[27dvw] xl:w-[17vw] xl:top-[46vh] xl:left-[44vw]' />
+                    <div className='absolute emid w-[73dvw] top-[37dvh] left-[27dvw] xl:w-[17vw] xl:top-[45vh] xl:left-[44vw] xl:-translate-y-[3px]' />
                     <div ref={ebotRef}  className='absolute ebot top-[100dvh] -left-[55dvw] xl:top-[93vh] xl:left-[25vw]' />
                     <img src={ecshaped} className='absolute xl:h-[50vh] w-auto top-[24dvh] xl:top-[26vh] left-4 xl:left-[30vw] transform translate-y-[1px]'/>               
-                    <div className="absolute pr-8 m-12 pl-4 xl:right-0 xl:top-[30vh] h-screen xl:w-1/3 flex items-start justify-start ">
-                        <div className="text-white font-epic xl:text-[2rem] text-[clamp(0.5rem,1rem,2rem)] font-semibold xl:pr-[5vw]">
+                    <div className="absolute pr-8 m-12 pl-4 xl:right-0 xl:top-[20vh] h-screen xl:w-1/3 flex items-start justify-start ">
+                        <div className="text-white font-epic xl:text-[1.5rem] text-[clamp(0.5rem,1rem,1.5rem)] font-semibold xl:pr-[5vw]">
                             <p>Hej, jeg er Emil.</p>
                             <p>Jeg læser Multimediedesign.</p>
                             <p>Jeg tror på, at godt design handler om at forstå brugerens behov.</p>
@@ -126,7 +126,7 @@ export default function Landing() {
                         </span>
                     </div>
                 </div>
-                <div className="absolute left-4 xl:left-0 inset-0 flex items-center justify-center">
+                <div className="absolute left-4 xl:left-0 xl:top-4 inset-0 flex items-center justify-center xl:-translate-x-[30px] xl:translate-y-[50px]">
                     <h1 className="text-white  font-epic font-semibold text-[calc(1.5rem+0.5vw)] tracking-[-0.2rem] uppercase">
                     UX/UI Designer & Webudvikler
                     </h1>

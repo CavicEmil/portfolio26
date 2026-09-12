@@ -3,7 +3,7 @@ import gsap from 'gsap';
 
 const OFFSET = 15;
 
-export default function MediaStack({ media }) {
+export default function MediaStack({ media, isMobile }) {
   const [order, setOrder] = useState(media.map((_, i) => i));
   const [ratio, setRatio] = useState(null);
   const cardRefs = useRef({});
@@ -30,7 +30,8 @@ export default function MediaStack({ media }) {
     isFirstRender.current = false;
   }, [order]);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation(); 
     setOrder((prev) => [...prev.slice(1), prev[0]]); 
   };
 
@@ -40,7 +41,7 @@ export default function MediaStack({ media }) {
   };
 
   return (
-    <div className="relative h-[60vh] flex-shrink-0 mr-16"
+    <div className={ isMobile ? 'relative w-[90dvw] flex-shrink-0 mb-24' : "relative h-[60vh] flex-shrink-0 mr-16" }
       style={{ aspectRatio: ratio ?? '3/5' }}
       >
       {media.map((src, i) => (
