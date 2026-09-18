@@ -123,13 +123,13 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
 
             {section.graph && (
                 <div className="xl:w-[40vw] w-[95dvw] flex-shrink-0 font-body text-white">
-                <h3 className="font-bodoni text-[28px] text-offwhite mb-4 border-b border-offwhite">{section.graph.title}</h3>
-                <div className='flex flex-row divide-x divide-offwhite gap-12'>
-                    <ul className="mb-6 px-6 xl:px-12">
-                        {section.graph.points.map((p) => <li key={p} className='w-[20dvw] xl:w-[10vw]'>{p}</li>)}
-                    </ul>
-                    <p>{section.graph.conclusion}</p>
-                </div>
+                    <h3 className="font-bodoni text-[28px] text-offwhite mb-4 border-b border-offwhite">{section.graph.title}</h3>
+                    <div className='flex flex-row divide-x divide-offwhite gap-12'>
+                        <ul className="mb-6 px-6 xl:px-12">
+                            {section.graph.points.map((p) => <li key={p} className='w-[20dvw] xl:w-[10vw]'>{p}</li>)}
+                        </ul>
+                        <p>{section.graph.conclusion}</p>
+                    </div>
                 </div>
             )}
             {section.learningscode && (
@@ -251,8 +251,8 @@ export default function ProjektDetail({ projectId, onClose, onNavigateKontakt })
                 ref={panelRef}
                 className={
                             isMobile
-                            ? 'bg-portfoliobg fixed top-32 h-[100%] w-full bg-portfoliobg z-40 overflow-y-auto overflow-x-hidden pb-[20dvh]'
-                            : 'bg-portfoliobg fixed top-0 right-0 h-screen w-[93vw] bg-portfoliobg z-40 overflow-x-auto overflow-y-hidden'
+                            ? 'bg-projektdetail fixed top-32 h-[100%] w-full bg-portfoliobg z-40 overflow-y-auto overflow-x-hidden pb-[20dvh]'
+                            : 'bg-projektdetail fixed top-0 right-0 h-screen w-[93vw] bg-portfoliobg z-40 overflow-x-auto overflow-y-hidden'
                         }
             >                
                 <div ref={trackRef} className={isMobile ? 'flex flex-col' : 'flex flex-row h-full'}>

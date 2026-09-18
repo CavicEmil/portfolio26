@@ -53,9 +53,6 @@
 
 }
 
-/* * {
-  cursor: none;
-} */
 
 .bg-loading {
   background-image: url('./assets/loadingbg.png');
@@ -83,6 +80,14 @@
   background-image: url('./assets/kontaktbg.png');
   background-size: cover;
   background-position: center;
+}
+
+.bg-projektdetail {
+  background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+  background-color: #55595E;
 }
 
 @media(max-width: 768px){
